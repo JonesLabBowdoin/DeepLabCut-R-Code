@@ -354,6 +354,7 @@ for (i in 1:length(alloutputcsv)) { #Edit
   output3[is.na(output3)] = "Flying"
   
   #Adding Interval
+  #If this seems incredibly inefficient to you, don't blame me! I study biology and psychology, not computer science.
   Interval<-inverse.rle(within.list(rle(output3$Behavior), values <- seq_along(values))) - 1
   output3$Interval=Interval
   
@@ -385,6 +386,7 @@ for (i in 1:length(alloutputcsv)) { #Edit
   output3$Behavior <- gsub("Flower11Blue \\d+", "Flower11Blue", output3$Behavior)
   output3$Behavior <- gsub("Flower12Yellow \\d+", "Flower12Yellow", output3$Behavior)
   output3$Behavior <- gsub("Flying \\d+", "Flying", output3$Behavior)
+  
   #Get the treatment for the current data by finding row with current video
   treatmentlist<-read_csv("C:/Users/Reed/Desktop/Reed's School Work/BeeLab R Projects/videotreatmentcsv.csv")
   v<-which(treatmentlist$Videos == paste0(titles[i]))#EDIT
@@ -460,6 +462,4 @@ writeData(
 setColWidths(Workbook,'Data',3, widths = 14)
 
 saveWorkbook(Workbook, "SucroseOnly2021.xlsx")
-
-#If this code doesn't work for you, don't blame me! I study biology and psychology, not computer science.
 
